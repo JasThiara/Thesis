@@ -7,6 +7,7 @@ from sage.all import *
 from Stock import Stock
 from EulerMaruyama import EulerMaruyama
 from Spline import NaturalCubicSpline
+from datetime import date
 import locale
 import sys
 class FlorenZmirou(Stock,EulerMaruyama):
@@ -72,8 +73,28 @@ class FlorenZmirou(Stock,EulerMaruyama):
                     self.GridVariance = self.GetGridVariance()
                     self.InterpolatedRange = (self.minPrice,self.maxPrice)
                     self.InterpolationBubbleTestResult = self.InterpolationBubbleTest(self.EstimatedVariance, self.StockPrices)
-                    self.InterpolationBubbleTest = self.InterpolationBubbleTestResult <= 0  #if true, the not a bubble.  if false, then perhaps a bubble.
-        
+                    self.InterpolationBubbleTestValue = self.InterpolationBubbleTestResult <= 0  #if true, the not a bubble.  if false, then perhaps a bubble.
+#                    self.SplineBubbleTestResult = self.SplineBubbleTest()
+#                    self.SplineBubbleTestValue = self.SplineBubbleTestResult <= 0
+    def SplineBubbleTest(self):
+        '''
+        Description:
+            Test 1: Test the slope of the floren-Zmirou volatility estimator
+            Test procedure:
+                1)  Calculate the numerical estimation of the derivative
+                2)  Calculate numerical estimate of mean value theorem.
+        input:
+            Estimated Variance     - EV
+            Stock Prices           - SP
+        output:
+                            1      |\ b
+            sigma'(c) =   -----    |      sigma'(x) dx
+                          b - a   \|  a
+        where sigma' is the derivative of the spline interpolation function of the FZ estimator.
+        '''
+        splineDerivative = self.CubicInterpolatedStandardDeviation.derivative()
+        splineIntegralValue = splineDerivative.integral(definite=True)
+        return splineIntegralValue/(self.maxPrice-self.minPrice)
     def InterpolationBubbleTest(self, EV, SP):
         '''
         Description:
@@ -355,13 +376,24 @@ class FlorenZmirou(Stock,EulerMaruyama):
         #1.3.2) Estimated Sigma value from Floren Zmirou Estimator
         #1.3.3) Number of Points for each Grid Point
         '''
+        tickerOutput =  "Ticker        :  %s"%self.Ticker
+        companyOutput = "Company Name  :  %s"%self.CompanyName
+        dateOfData  =   "Day Of Data   :  %s"%date.today().strftime('%d/%m/%Y')
+        print tickerOutput
+        print companyOutput
+        print dateOfData
+        x_hn = self.x_step_size(self.StockPrices)
+        halfh_n = x_hn/2.0
+        d = {gridPoint:[stockPrice for stockPrice in self.StockPrices if abs(gridPoint-stockPrice)<halfh_n] for gridPoint in self.GridPoints}
         table= []
-        columnNames = ["Usable Grid Points", "Estimated Sigma Zmirou", "Number of Points"]
+        columnNames = ["Is Usable Grid Point?",  "Grid Point", "Estimated Sigma Zmirou", "Number of Points"]
         table.append(columnNames)
-        gridPoints = self.UsableGridPoints
-        estimatedSigma = self.EstimatedVariance
-        #for i in range(len(gridPoints)):i
-        for gridPoint,StockPrices in self.StockPricesByGridPointDictionary.iteritems(): 
-            table.append([str(gridPoint), str(self.Volatility_estimation(self.T,self.StockPrices,gridPoint,self.n,self.x_step_size(self.StockPrices)/2.0)**2), str(len(StockPrices))])
+        for gridPoint,StockPrices in d.iteritems(): 
+            if gridPoint in self.StockPricesByGridPointDictionary.keys():
+                isUsableGridPoint = "Y"
+            else:
+                isUsableGridPoint = "N"
+            table.append([isUsableGridPoint, str(gridPoint), str(self.Volatility_estimation(self.T,self.StockPrices,gridPoint,self.n,self.x_step_size(self.StockPrices)/2.0)**2), str(len(StockPrices))])
         out = sys.stdout
-        return self.pprint_table(out, table)
+        self.pprint_table(out, table)
+        print "\n"

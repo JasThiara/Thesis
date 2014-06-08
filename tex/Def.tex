@@ -1,0 +1,220 @@
+\section{Definitions}
+\section*{Finance Definations}
+\subsection{Asset Price Bubbles}\\\\
+ The difference between the market and fundamental price, if any, is a price bubble.\\
+ 
+\subsubsection{Strike Price}\\
+ The strike price or exercise price of an option is the fixed price at which the owner of the option can buy( in the case of call) or sell (in the case of a put) the underlying security or commodity.\\
+
+\subsubsection{Volatility}\\
+Rate at which the price of security moves up and down.
+
+
+\section*{Mathematical Definations}
+\subsection{Introduction to Stochastic Differential Equations}
+We treat the asset price as a stochastic process:\\\\
+\subsubsection{Stochastic Process}\\
+Given a probability space $\left( \Omega, \mathcal{F}, P \right) $, a stochastic process with state space X is a
+collection of X-valued random variables, $S_t$, on $\Omega$ indexed by a set $T$ (e.g. time).
+\begin{equation}\label{eqnModelling2-1}
+S = \left\lbrace S_t : t\in T \right\rbrace 
+\end{equation}
+
+One can think of $S_t$ as a asset price at time $t$.\\\\
+\subsubsection{Stochastic Differential Equation}\\
+A differential equation with one or more terms is a stochastic process.
+
+\subsection{The Price Asset Model using an SDE}\\
+Consider the linear SDE with a Brownian Motion $\left\lbrace S_t: 0\leq t\leq T\right\rbrace$:
+\begin{equation}\label{eqnModelling4-1}
+\begin{array}{rcl}
+dS_t &=& \sigma(S_t)dW_t+\mu(S_t)dt\\
+S_0 &=& 0
+\end{array}
+\end{equation}
+\begin{itemize}
+\item $W_{t}$ denotes the standard Brownian Motion.
+\item $\mu(S_{t})$ called the drift coefficient.
+\item $\sigma(S_{t})$ called the volatility coefficient.
+\end{itemize}
+
+\subsection{The Price Asset Model using an SDE}\\\\
+\subsection{Brownian Motion}\\\\
+A continuous-time stochastic process $\left\lbrace S_{t}: 0\leq t\leq T\right\rbrace$ is called a \textit{Standard
+Brownian Motion} on $ \left[ 0, T\right]$ if it has the following four properties:
+\begin{itemize}
+\item[(i)]$S_{0} =0$
+\item[(ii)] The increment of $S_{t}$ are independent; given $$0\leq t_{1}< t_{2}< t_{3}<\cdots<t_{n}\leq T$$ the random
+variables $\left( S_{t_{2}} -S_{t_{1}}\right)$, $\left(S_{t_{3}} -S_{t_{2}} \right)$, $\cdots$, $\left( S_{t_{n}}
+-S_{t_{n-1}}\right)$  are independent.
+\item[(iii)]$\left( S_{t} -S_{s}\right)$, $0\leq s\leq t\leq T$ has the Gaussian distribution with mean zero and
+variance $\left( t-s \right) $
+\item[(iv)]$S_{t}(W)$ is a continuous function of $t$, where $W \in \Omega$.
+\end{itemize} 
+
+
+
+
+
+\subsection{Martingales}
+\begin{itemize}
+\item[(a)] $E[ \mid S_{n}\mid]< +\infty$, for all n.
+\item[(b)] $S_n$ is said to be \textit{adapted} if and only if $S_{n}$ is $\mathcal{F}_{n}$-measurable. 
+\end{itemize} 
+The stochastic process $S = \displaystyle{\left\lbrace S_n \right\rbrace_{n=0}^\infty}$ is a \textit{martingale} with
+respect to $\left( \lbrace\mathcal{F}_{n}\rbrace, P \right)$  if $E[ S_{n+1}\mid \mathcal{F}_{n}] = S_{n}$, for all n,
+almost surely and:
+  \begin{itemize}
+  \item S satifies (a) and (b).
+  \end{itemize}
+\subsection{Supermartingale}\\\\
+The stochastic process $S = \displaystyle{\left\lbrace S_n \right\rbrace_{n=0}^\infty}$ is a \textit{supermartingale}
+with respect to $\left( \lbrace\mathcal{F}_{n}\rbrace, P \right)$  if $E[ S_{n+1}\mid \mathcal{F}_{n}] \leq S_{n}$, for
+all n, almost surely and:
+  \begin{itemize}
+  \item S satifies (a) and (b).
+  \end{itemize}
+ \subsection{Local Martingale}\\\\
+If $\left\lbrace S_n \right\rbrace$ is adapted to the filtration $\left\lbrace \mathcal{F}_n \right\rbrace $, for all $0
+\leq t\leq \infty$, then $\left\lbrace S_n: 0 \leq t \leq \infty \right\rbrace$ is called a \textit{local martingle}
+provided that there is nondecreasing sequence $\left\lbrace \tau_k \right\rbrace $ of stopping times with the property
+that $\tau_k \rightarrow \infty$ with probability one as $k \rightarrow \infty$ and such that for each $k$, the process
+defined by
+$$S_t^{(k)} = S_{t \wedge \tau_k} - S_0$$ for $t \in [0 , \infty)$ is a martingale with respect to the filtration
+$$\left\lbrace \mathcal{F}_n : 0 \leq t < \infty \right\rbrace$$
+\subsection{Remark}\\
+ A strict local martingale is a non-negative local martingale.
+
+\subsection{Theorem}\\
+ If for any strict local martingale $$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $$ with $E \left[ \left\vert S_0
+\right\vert \right] < \infty$ is also a supermartingale and $E \left[ S_T \right] = E \left[ S_0 \right] $, then
+$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $ is in fact a martingale. \\\\
+\subsection{Remark}
+\begin{itemize}
+\item $\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $ is a supermartingale and a martingale if and only if it
+has constant expectation.\item For a strict local martingale its expectation decreases with time.
+\end{itemize} 
+
+\subsection{Relating Martingales and Bubbles}\\\\
+\subsection{theorem}
+ $\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $ is a strict local martingale if and only if
+\begin{equation}\label{eqnMartingalesAndBubbles4-1}
+\int_\alpha^\infty \frac{x}{\sigma^2(x)}dx < \infty
+\end{equation} 
+for all $\alpha > 0$.
+
+\begin{itemize}
+\item A bubble exists if and only if (\ref{eqnMartingalesAndBubbles4-1}) is finite.
+\item We shall call (\ref{eqnMartingalesAndBubbles4-1}) the volatility of asset return.
+\end{itemize} 
+\begin{itemize}
+\item In this scope, the difference between a martingale and a strict local martingale is whether the volatility of
+asset return, (\ref{eqnMartingalesAndBubbles4-1}), is finite or not finite.
+\end{itemize}
+
+
+\subsection{Methods for Determining Price Bubbles}
+\begin{itemize}
+\item \textit{Florens-Zimirou Estimator}
+\item Smooth Kernel Estimator
+\item Unbounded Volatility Function Estimator
+\item Parametric Estimation
+\item Reproducing Kernel Hilbert Space Methods
+\end{itemize} 
+\subsection{What is the Florens-Zimirou Estimator?}\\\\
+This estimator is a non-parametric estimator based on the local time of the diffusion process.
+The local time of a diffusion is given by:
+
+\subsection{Random Variable }\\\\
+Random Variable is a variable whose value is subject to variations due to chance. Random variable conceptually does not have a single, fixed value rather, it can take on a set of possible different values, each with an associated probability.\\
+
+Given a probability space $\left( \Omega, \mathcal{F}, P \right) $ the function $X$: $\left( \Omega, \mathcal{R} \right)$s a real-valued random variable if\\
+$w : X(w)\leq r\in \mathcal{F}           \forall r\in \mathcal{R}$\\\\
+
+\subsection{Reproducing Kernal Hilbert Space Definations}\\
+
+A inner product ${\langle u, v \rangle}$can be 
+	1. a usual dot product: $\langle u, v \rangle$  = $v'w$ = $\sum_{i}v_{i}w_{i}$
+	2. a kernal product : $\langle u, v \rangle$  = $k(v, w)$  = $ \varphi(v)'\varphi(w)$ (where $\varphi(u)$ may have infinite dimensions)\\\\
+	
+\subsection{Hilbert Space}\\\\
+
+A hilbert space is an inner product that is complete and sepatable with respect to the norm defined by inner product.\\\\
+
+\subsection{Reproducing Kernal Hilbert Space}\\\\
+$k(  )$ is a reproducing kernal of hilbert space \\
+$\mathcal{H}$ if $\forall f \in \mathcal{H}, f(x) = \langle k(x, .), f( .)\rangle$\\
+A Reproducing Kernal Hilbert Space (RKHS) is a hilbert space  H with a reproducing kernal whose span is danse in H. \\
+
+\subsection{Kernal}\\
+ $k : \mathcal{X} X \mathcal{X} \rightarrow \mathcal{R}$ is a kernal if \\\\
+ 1. $k$ is symmetric: $k(x,y) = k(y,x)$.\\
+ 
+2. $k$ is positive semi-definite, i.e.,  $\forall x_{1}, x_{2}.......,x_{n} \in \mathcal{X}$ the "Gram Matrix" K defined by $K_{ij} = k(x_{i}, x{j}$\\
+
+  A RKHS possesses many useful properties for data interpolation and function approximation problems.\\
+  
+  \subsection{1. Reproducing Property}:\\
+  There exists a kernal function $Q(x,x')$ the reproducing kernal in $H(D)$ such tht the following properties hold\\
+   $f(x) = \langle f(x'), Q(x,x') \rangle '$\\\\
+    $Q(x,y) = \langle Q(x,x'), Q(y,x') \rangle ' $ where $\langle , \rangle $ is inner product over $x'$\\\\
+    \subsection{ 2. Uniqueness}\\
+    The RKHS $H(D)$ has one and only one reproducing kernal $Q(x,x')$\\\\
+    \subsection{3. Symmetry and positivity}\\
+    $Q(x,x')$ is symmetric  means $ Q(x,x') = Q(x',x)$\\
+     Positive definite means $\sum_{i =1}^n \sum_{j=1}^n c_{i}Q(x_{i}, x_{j})c_{j}\geq 0$ where $c_{i}$  any set of real numbers and $x_{i}$ any countable set of points\\\\
+  \subsection{Well Conditined solution}\\
+  Small changed in input to the expression will make small changes in output.\\\\
+  \subsection{Ill-Conditioned solution}\\
+   Small changes in input to the expression will make large changes in putput.\\\\
+   \subsection{Beta Function}\\\\
+   $B(x,y) = \int_0^1 {t^{x-1}}{(1-t)^{y-1}}dt$\\
+   for $Re(x), Re(y) \>0$\\
+   \subsection{Gaussian Hypergeometric function}\\\\
+   for $|z| <1 $\\
+   $F_{1}(a,b;c;z) = \sum_{n=0}^\infty\frac{(a)_{n}(b)_{n}}{(c)_n}\frac{z^{n}}{n!}$\\\\
+   it is undefined (or infinite) if $c$ equals a non=positive integer. Here $(q)_{n}$ is the (rising) Pochhammer symbol which is defined by :\\\\
+   
+   BACKUP DEFINATIIONS:\\
+
+\subsection {Miscellaneous Financial Terms}
+\begin{itemize}
+\item Market Price - The current price of an asset.
+\item Fundamental Price - The actual value of an asset based on an underlying perception of its \textit{true value}.
+\item Risk - Variance of return on an asset 
+\item Portfolio - Set of Assets.
+\end{itemize} 
+
+%%%BackupSlide - 2
+\subsection{Miscellaneous Mathematical Terms}
+\begin{itemize}
+\item Probability Space ($\Omega,\mathcal{F},P$) where $\Omega$ is a set ( sample space), $\mathcal{F}$ is a sigma
+algebra of subsets (events) of $\Omega$, and $P$ is a Probability Measure.
+\item Random Variable - Measurable functions of real analysis.
+$X:\Omega\rightarrow \mathcal{R}$ map $X : (\Omega,\mathcal{F})\mapsto (\mathcal{R}, \mathcal{B})$ and $X$ is random variable if \\
+$X^{-1}(A) \epsilon \mathcal{F}, \forall A \epsilon\mathcal{B})$,\\
+where $X^{-1}(A):={\omega \epsilon \Omega\mid X(\omega) \epsilon A}$
+\end{itemize} 
+
+%%%BackupSlide - 3
+\subsection{Types of Martingales}
+Martingale - Fair Game\\
+\begin{itemize}
+\item $S_{n}$ is Total winning per dollar stock up to time $n$.
+\item $\left( S_{n+1} - S_{n}\right) $ is net winning in game $n+1$.
+\item $E[ S_{n+1}\mid \mathcal{F}_{n}] = S_{n}$, $\forall n$.
+\end{itemize}
+
+Super Martingale - Unfavorable Game\\
+\begin{itemize}
+\item $S_{n}$ is Total winning per dollar stock up to time $n$.
+\item $\left( S_{n+1} - S_{n}\right) $ is net winning in game $n+1$.
+\item $E[ S_{n+1}\mid \mathcal{F}_{n}] < S_{n}$, $\forall n$
+\end{itemize}
+
+Sub Martingale - Unfavorable Game\\
+\begin{itemize}
+\item $S_{n}$ is Total winning per dollar stock up to time $n$.
+\item $\left( S_{n+1} - S_{n}\right) $ is net winning in game $n+1$.
+\item $S[ M_{n+1}\mid \mathcal{F}_{n}] > S_{n}$, $\forall n$
+\end{itemize}

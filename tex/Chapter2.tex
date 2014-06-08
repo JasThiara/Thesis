@@ -1,0 +1,311 @@
+%{Chapter 2}
+\chapter{Theoretical Background}
+%Where does your problem come from? (you’ll have to talk about stochastic PDEs, volatility, assets price modeling, martingales, etc.) 
+Let's consider the Stochastic Differential Equation:
+\begin{equation}
+ dS_t = \mu(S_t)dt+\sigma(S_t)dW_t  
+ S_0 = s_0
+\end{equation}
+In this chapter, we will focus on numerical methods of Stochastic Differential Equations (SDE). 
+SDE's are used in biology, physics, mathematics and ofcourse finance. The basic knowledge of SDE's comes from probability, random variables, variance and Stochastic Process. 
+ These useful keywords are related to numberical methods of SDE's.
+ Our problem focuses on finance, SDE's are used to model asset price with Brownian motion.\\
+\indent For the numerical solutions we will assume drift $\mu$ and diffusion $\sigma$ coeficients are constants. Now Euler Muruyama method can be used to model asset price.
+By studying numberical solutions of SDE's, we will have better understanding toward the theory of SDE. 
+SDE's are combined with continous Brownian Motion with different methods such as: Euler -Maruyama method, strong and weak convergence , milstein method. Let's start with finance background. 
+\begin{itemize}
+\item What is Asset Bubble?
+\item How does one determine if an asset price is experiencing a bubble?
+\end{itemize}
+These are the common questions which will raise in every mind. Our methodology will clearly answer these questions. 
+\section{Definations}
+\begin{definition}[Asset Bubble]
+\emph {Suppose the market price of an asset increases significantly.  How can one determine if the market price is inflated
+above the actual price of an asset? This price behavior is know as a bubble.}
+\end{definition}
+\begin{definition}[Market Price]\label{def1}
+\emph{The current price of an asset.}
+\end{definition}
+\begin{definition}[Fundamental Price] 
+\emph {The actual value of an asset based on an underlying perception of its \textit{true value}.}
+\end{definition}
+\begin{definition}[Risk]
+\emph{Variance of return on an asset.}
+\end{definition}
+\begin{definition} [Portfolio] 
+\emph{Set of Assets.}
+\end{definition}
+\begin {definition} [Asset Bubble]
+\emph{The difference between the market and fundamental price, if any, is a price bubble.}
+\end{definition}
+\begin{definition} [Volatility]
+\emph{Rate at which the price of security moves up and down.}
+\end{definition}
+Our work is a combination of finance and mathematics.
+From here we will introduce mathematical definations which are the connection between price to bubble.
+\begin{definition}[Probability Space]
+\emph {($\Omega,\mathcal{F},P$) where $\Omega$ is a set ( sample space), $\mathcal{F}$ is a sigma
+algebra of subsets (events) of $\Omega$, and $P$ is a Probability Measure.}
+\end{definition} 
+\begin{definition}[Random Variable] 
+\emph{Measurable functions of real analysis
+$X:\Omega \mapsto \mathcal{R}$ map $X :\left( \Omega,\mathcal{F} \right)  \mapsto \left( \mathcal{R}, \mathcal{B}\right)  $ and $X$ is random variable if \\
+$$X^{-1}(A) \epsilon \mathcal{F}, \forall A \epsilon\mathcal{B}$$
+where $X^{-1}(A):={\omega \epsilon \Omega\mid X(\omega) \epsilon A}$}
+\end{definition}
+\begin{itemize}
+\item We treat the asset price as a stochastic process.
+\end{itemize}
+\begin{definition}[Stochastic Process]
+\emph{Given a probability space $\left( \Omega, \mathcal{F}, P \right) $, a stochastic process with state space X is a
+collection of X-valued random variables, $S_t$, on $\Omega$ indexed by a set $T$ (e.g. time).}
+\begin{equation}
+S = \left\lbrace S_t : t\in T \right\rbrace
+\end{equation}
+\end{definition}
+One can think of $S_t$ as a asset price at time $t$.
+\begin{definition}[Stochastic Differential Equation]
+\emph{A differential equation with one or more terms is a stochastic process.}
+\end{definition}
+\begin{definition}[Brownian Motion]
+\emph{$\left\lbrace S_t: 0\leq t\leq T\right\rbrace$:
+\begin{equation}\label{eqnModelling4-1}
+\begin{array}{rcl}
+dS_t &=& \sigma(S_t)dW_t+\mu(S_t)dt\\
+S_0 &=& 0
+\end{array}
+\end{equation}}
+\end{definition} 
+\begin{itemize}
+\item $W_{t}$ denotes the standard Brownian Motion.
+\item $\mu(S_{t})$ called the drift coefficient.
+\item $\sigma(S_{t})$ called the volatility coefficient.
+\end{itemize}
+%%%%%Modelling Page 3%%%%
+\begin{definition}[Brownian Motion]
+\emph{A continuous-time stochastic process $\left\lbrace S_{t}: 0\leq t\leq T\right\rbrace$ is called a \textit{Standard
+Brownian Motion} on $ \left[ 0, T\right]$ if it has the following four properties:
+\begin{itemize}
+\item[(i)]$S_{0} =0$
+\item[(ii)] The increment of $S_{t}$ are independent; given $$0\leq t_{1}< t_{2}< t_{3}<\cdots<t_{n}\leq T$$ the random
+variables $\left( S_{t_{2}} -S_{t_{1}}\right)$, $\left(S_{t_{3}} -S_{t_{2}} \right)$, $\cdots$, $\left( S_{t_{n}}
+-S_{t_{n-1}}\right)$  are independent.
+\item[(iii)]$\left( S_{t} -S_{s}\right)$, $0\leq s\leq t\leq T$ has the Gaussian distribution with mean zero and
+variance $\left( t-s \right) $
+\item[(iv)]$S_{t}(W)$ is a continuous function of $t$, where $W \in \Omega$.
+\end{itemize} }
+\end{definition}
+%%%%%Modelling Page 5%%%%
+\begin{definition}[Martingales]
+\emph{\begin{itemize}
+\item[(a)] $E[ \mid S_{n}\mid]< +\infty$, for all n.
+\item[(b)] $S_n$ is said to be \textit{adapted} if and only if $S_{n}$ is $\mathcal{F}_{n}$-measurable. 
+\end{itemize} 
+The stochastic process $S = \displaystyle{\left\lbrace S_n \right\rbrace_{n=0}^\infty}$ is a \textit{martingale} with
+respect to $\left( \lbrace\mathcal{F}_{n}\rbrace, P \right)$  if $E[ S_{n+1}\mid \mathcal{F}_{n}] = S_{n}$, for all n,
+almost surely and:
+  \begin{itemize}
+  \item S satifies (a) and (b).
+  \end{itemize}}
+\end{definition}
+\begin{definition}[Supermartingale]
+\emph{The stochastic process $S = \displaystyle{\left\lbrace S_n \right\rbrace_{n=0}^\infty}$ is a \textit{supermartingale}
+with respect to $\left( \lbrace\mathcal{F}_{n}\rbrace, P \right)$  if $E[ S_{n+1}\mid \mathcal{F}_{n}] \leq S_{n}$, for
+all n, almost surely and:
+  \begin{itemize}
+  \item S satifies (a) and (b).
+  \end{itemize}}
+\end{definition}
+\begin{definition}[Local Martingale]
+\emph{If $\left\lbrace S_n \right\rbrace$ is adapted to the filtration $\left\lbrace \mathcal{F}_n \right\rbrace $, for all $0
+\leq t\leq \infty$, then $\left\lbrace S_n: 0 \leq t \leq \infty \right\rbrace$ is called a \textit{local martingle}
+provided that there is nondecreasing sequence $\left\lbrace \tau_k \right\rbrace $ of stopping times with the property
+that $\tau_k \rightarrow \infty$ with probability one as $k \rightarrow \infty$ and such that for each $k$, the process
+defined by
+$$S_t^{(k)} = S_{t \wedge \tau_k} - S_0$$ for $t \in [0 , \infty)$ is a martingale with respect to the filtration
+$$\left\lbrace \mathcal{F}_n : 0 \leq t < \infty \right\rbrace$$}
+\end{definition}
+\begin{itemize}
+\item{Remark}
+ A strict local martingale is a non-negative local martingale.
+\end{itemize}
+\begin{thm}\label{thm:supermartingale}
+If for any strict local martingale $$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $$ with $E \left[ \left\vert S_0
+\right\vert \right] < \infty$ is also a supermartingale and $E \left[ S_T \right] = E \left[ S_0 \right] $, then
+$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $ is in fact a martingale. 
+\end{thm} 
+Remarks
+\begin{itemize}
+\item $\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $ is a supermartingale and a martingale if and only if it
+has constant expectation.\item For a strict local martingale its expectation decreases with time.
+\end{itemize} 
+Connection between martingale and bubble as follows:
+\begin{thm}\label{thmRelatingMartingalesAndBubbles}
+ $$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $$ is a strict local martingale if and only if
+\begin{equation}\label{eqnMartingalesAndBubbles4-1}
+\int_\alpha^\infty \frac{x}{\sigma^2(x)}dx < \infty
+\end{equation} 
+for all $\alpha > 0$.
+\end{thm} 
+\begin{itemize}
+\item A bubble exists if and only if (\ref{eqnMartingalesAndBubbles4-1}) is finite.
+\item We shall call (\ref{eqnMartingalesAndBubbles4-1}) the volatility of asset return.
+\end{itemize} 
+\begin{itemize}
+\item In this scope, the difference between a martingale and a strict local martingale is whether the volatility of
+asset return, (\ref{eqnMartingalesAndBubbles4-1}) is finite or not finite.
+\end{itemize}
+\section{Numerical Methods of SDE}
+For $t \in [0,T]$ equation $(\ref{eqnModelling4-1})$ can be represented in an integral form in the following way:
+\begin{eqnarray*}
+dS_t &=& \sigma(t)dW_t+\mu(t)dt\\
+\int_0^t dS_t &=& \int_0^t \sigma \left(S_t\right)dW_t+\int_0^t \underbrace{\mu\left(S_t\right)}_{\in
+\mathcal{R}^+}dt\\
+S_t - S_0   &=& \int_0^t \sigma\left(S_t\right)dW_t+ \left( \underbrace{\mu\left(S_t\right) \cdot t}_{ x_0} -
+\mu\left(S_t \right) \cdot 0\right) \\
+\end{eqnarray*} 
+%%%%%Modelling Page 6%%%%
+\begin{equation}
+\begin{array}{rcl}
+S_t = x_0 + \int_0^t \sigma\left(S_t\right)dW_t
+\end{array}
+\end{equation}\\(1.5) is the price model which will be used in SDE's and Floren Zmirou Estimator
+\subsection{The Euler-Maruyama Method}
+SDE can be written into integral form as:
+\begin{equation}
+S_t =S_0+ \int_0^t f\left(S_s\right)ds +\int_0^t g\left(S_s\right)dW(s)\hspace{.2in}t\in [0,T]\\
+\end{equation}
+$f$, $g$ are scalar function with $S_0$ is a random variable.\\
+$$\begin{cases}
+dS_t = \mu(S_t)dt+\sigma(S_t)dW_t\\
+S(0) = S_0
+\end{cases}$$
+ Computing solution by  Euler Maruyama method as follows:\\
+ $$w_0 = S_0$$
+ $$w_{i+1} = w_i+\mu(t_i,w_i) \bigtriangleup t_{i+1}+\sigma(t_i,w_i)\bigtriangleup W_{i+1}$$
+ $$w_{i+1} = w_i+\mu w_i \bigtriangleup t_i+\sigma w_i\bigtriangleup W_i$$
+ $$\bigtriangleup t_{i+1} = t_{i+1}-t_i$$
+ $$\bigtriangleup W_{i+1} = W(t_{i+1}-W(t_i)$$
+The crucial question is how to model the Brownian motion $\bigtriangleup W_{i}$. Define N(0,1) to be the standard random variable that is normally distributed with mean 0 and standard deviation 1. 
+Now drift coefficient $\mu$ and diffusion coefficient $\sigma$ are constants, the SDE has an exact solution:
+\begin{equation}\label{eqnModelling7-2}
+S(t) = S_0 \cdot Exp \left( \left( \mu - \frac{1}{2} \sigma^2 \right)t + \sigma W(t) \right) 
+\end{equation} 
+For an example, we use the Euler-Maruyama Approximation Method on the SDE where the constants $\mu = 2$, $\sigma = 1$,
+and $S_0 = 1$ are given.
+
+Put figure 
+
+There are other methods such as Strong and weak convergence of the Euler Muruyama method, Milstein's Higher Order Method, Linear Stability and Stochastic Chain Rule are also used for numerical solutions for SDE.
+\begin{itemize}
+\item What will happen if $\sigma$ is not constant. Our problem will focus on the scenario when $\sigma$ values will be approximate
+with non parametric estimator Floren Zmirou method on local real time.
+\end{itemize} 
+\section{Methodology}
+In this classical setting, Jarrow, Protter, and Shimbo [19], [20] show that there are three types of asset price bubbles possible. 
+Two of these price bubbles exist only in infinite horizon economies, the third—called type $3$ bubbles—exist in finite horizon settings. 
+Consequently, type $3$ bubbles are those most relevant to actual market experiences. 
+For this type of bubble, saying whether or not a bubble exists amounts to determining whether the price process under a risk neutral measure is a martingale or a strict local martingale: if it is a strict local martingale, there is a bubble.
+ Stock price is strict local martingale if and only if \\
+\begin{equation}
+\int_\alpha^\infty \frac{x}{\sigma\left(x\right)}dx < \infty    \forall   \alpha >0
+\end{equation} 
+Floren Zmirou's non parametric estimator is based on the local time of the Diffusion Process.
+\begin{definition}[Diffusion Process]
+\emph{In probability theory, a branch of mathematics, a diffusion process is a solution to a stochastic differential equation. 
+ It is a continuous-time Markov process with almost surely continuous sample paths.}
+\end{definition}
+ \subsection{Floren Zmirou}
+ Lets consider following equation:\\
+ \begin{equation}
+S_t = S_0 + \int_0^t \sigma\left(S_t\right)dW_t
+\end{equation}
+In Floren Zmirou, the drift coefficient $\mu(S_{t})$ is null which is ignored without loss of generality. 
+It is not involved in our problem. $\sigma(S_{t})$ the volatility coefficient is unknown. We will follow steps for Floren Zmirou method:
+\begin{itemize}
+  \item $\left(S_{t_1},\ldots, S_{t_n} \right) $ are the stock prices in the interval $t_1,\ldots, t_n \in [0,T]$
+  \item Without loss of generality, we assume $T = 1$, therefore $t_i = \frac{i}{n}$
+\end{itemize}
+Estimator as follows:\\ 
+$$l_T(x)= lim_{\epsilon\longrightarrow 0} \frac{1}{2 \epsilon} \int_0^T 1_{\{|S_s-x|<\epsilon\}} d \langle S,S\rangle_s$$
+where $d \langle S,S\rangle_s = \sigma^2(S_{s})$
+$$L_T(x)= lim_{\epsilon\longrightarrow 0} \frac{1}{2 \epsilon} \int_0^T 1_{\{|S_s-x|<\epsilon\}} dS$$
+$$\Longrightarrow l_T(x) = \sigma^2(S_{s})L_T(x)$$
+$$\Longrightarrow \frac{l_T(x)}{L_T(x)} = \sigma^2(S_{s})$$
+Let's assume that $nh_n \rightarrow \infty$ and $h_n\rightarrow 0$
+$$L^n_{T}(x)= \frac{T}{2nh_n}\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}} $$
+$$l^n_{T}(x)= \frac{T}{2nh_n}\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}} n (S_{t_i+1}-S_{t_i})^2 $$
+estimator of $\sigma^2(x)$ as follows:
+\begin{equation}\label{florenZmirouEquation}
+S_n(x) = \frac{\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}} n (S_{t_i+1}-S_{t_i})^2}{\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}}}
+\end{equation}
+\begin{thm}\label{theorem1}
+If $\sigma$ is bounded above and below from zero, has three continuous and bounded
+derivatives, and if $(h_n)_n≥1 $satisfies $nh_n\rightarrow \infty $ and $nh_4n\rightarrow 0$, then $S_n(x)$ is a consistent estimator of $\sigma^2(x)$.\\
+\end{thm}
+In Theorem \ref{theorem1} we say XYZ\ldots.
+\begin{thm}\label{thm:Theorem2}
+ If $nh_n\rightarrow 0 $, then $\sqrt{N^n_x}((\frac{S_n(x)}{\sigma^2(x)})-1)$ converges in distribution to $\sqrt{2}Z$
+ where Z is a standard normal ransom variable and $N^n_x$ = $1_{\{|S_{ti}-x|<hn\}}$ 
+ Floren Zmirou estimator requires a grid step which is $h_n\rightarrow 0 $ such that $nh_n\rightarrow \infty $ and $nh^4_n\rightarrow 0 $.
+ We will choose step size $h_n = \frac{1}{n^\frac{1}{3}}$ so that all the conditions will be satisfied.
+\end{thm}
+ \subsection{Interpolation}
+Interpolation is a method of constructing new data points within the range of a discrete set of known data points. There are many methods to do interpolation. 
+For example Linear Interpolation,polynomial interpolation, piecewise constant interpolation, spline interpolation.
+Here, we will interpolate an estimate of $\sigma^2(x_i)$ where $i \in [1.M]$ within the bounded finite interval $D$ where we have observations.
+We used cubic spline interpolation and Reproducing Kernal Hilbert Spaces to get interpolation function.\\
+\subsubsection{Cubic Spline Interpolation}
+\begin{itemize}
+\item {\bf Piecewise-polynomial approximation} : An alternative approach is to divide the interval into a collection of subintervals
+and construct a different approximating polynomial on each subinterval.
+Approximation by functions of this type is called piecewise-polynomial approximation.
+\item The most common piecewise-polynomial approximation uses cubic polynomial between each sucessive pair of nodes
+and is called {\bf cubic spline interpolation}.
+\item {\bf Cubic Spline Interpolation}\\
+Given a function f defined on [a,b] and a set of nodes $a = x_o<x_1<\ldots <x_n = b$
+a {\bf cubic spline interpolant S} for f is a function that satisfies the following conditions:\\
+a) $S(x)$ is a cubic polynomial, denoted $S_j(x)$ on the subinterval $[x_j,x_{j+1}]$ for each
+$j = 0,1,2,\ldots,n-1$;\\
+b) $S_j(x_j) = f(x_j)$ and $S_j(x_{j+1})= f(x_{j+1})$ for each $j = 0,1,2,\ldots,n-1$;\\
+c) $S_{j+1}(x_{j+1}) = S_j(x_{j+1})$ for each $j = 0,1,2,\ldots,n-2$;\\
+d) $S'_{j+1}(x_{j+1}) = S'_j(x_{j+1})$ for each $j = 0,1,2,\ldots,n-2$;\\
+e) $S''_{j+1}(x_{j+1}) = S''_j(x_{j+1})$ for each $j = 0,1,2,\ldots,n-2$;\\
+f) One of the following sets of boundry conditions is satisfied;\\
+      i) $S''(x_0) = S''x_n) = 0 $;\\
+     ii) $S'(x_0) = f'x_0)$ and $S'(x_n) = f'x_n) $\\
+\item When the free boundry conditions occur, the spline is called {\bf natural spline}.
+\item {Interpolation is seen as inverse problem.}
+\item {We will have two types of solutions for inverse problem.}
+\item{Normal Solution}
+It will allows an exact interpolation with minimal squared norm.
+\item{Regularized Solution}
+it will yields quasi interpolative results, accompained by an error bound analysis with Tikhonov Regularization produces an approximate solution $f_\alpha$ which belongs to $H(D)$and that can be obtained via the minimization of the regularization functional.
+\end{itemize}
+\paragraph{Regularized solution with Kernal function}
+For interpolation, we denote kernal function $K^{a,b}_{n,\tau}$ for n =1 and n = 2. of $H^n(a,d)$ where $D = (a,b)$
+\indent Now one we have interpolation function and extended form of the estimated $\sigma^2(x)$ call this extended function $\sigma^b(x)$, we can
+decide if there is need of extrapolation.\\
+\begin{itemize}
+  \item if the volatility $\sigma^2(x_i)$ doesn not diverge to $\infty$ when $x\rightarrow \infty$ and it remains bounded on $\mathcal{R^+}$.
+  		- No extrapolation is required.
+  		- $\int_\epsilon^\infty \frac{x}{\sigma^2(x)}$ is infinite.
+  		- The process is true martingale.
+  \item If the volatility diverges to $\infty$ when $x\rightarrow \infty$ then we will extrapolate.
+\end{itemize}
+\subsection{Extrapolation ,Optimization and Minimization}
+Now since we have extended function $\sigma^b(x)$, we will extrapolate this over $\mathcal{R^+}$.\\
+Let's consider following optimization with minimazation problem:
+\begin{equation}\label{eqn}
+\bar{m} = \underset{m\geq 0}{\text{argmin}} \sqrt{\int_{ \left[ a,\infty \cap D \right] } \left\vert \sigma_m -\sigma^b \right\vert^2  }dS
+\end{equation} 
+%$\bar{m}$ = argmin_$m\geq 0$ \sqrt{\int_{[a,\infty[\cap D} |\sigma_m -\sigma^b|^2}dS
+\begin{itemize}
+  \item $\sigma_m$ will interpolate the input data points when n = 2.
+  \item $\sigma_{\bar{m}}$ has the asymptotic behavior that beast matches our function on the estimation interval. 
+  We will construct extrapolation by choosing the asymptotic weighting function parameter $m$ such that $f_m = \frac{1}{\sigma^2m}$.
+  \item $a$ = max S - $\frac{1}{3}$(maxS-min S)
+  \item $H_{2,m}$ allows the best interpolation of M which is estimated points such that the extrapolation function remains as close as possible to $\sigma^b(x)$.
+  \item We will plot function with different asymptotic weighting parameter m which is obtained from RKHS extrapolation method.
+  \item The asymptotic weighting function's parameter $\bar{m}$ obtained by optimization and minimization is the most consistent which exactly match the input data within all the function in $H_{1,m}$
+\end{itemize}

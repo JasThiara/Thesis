@@ -1,0 +1,311 @@
+\chapter{Implementation of an Asset Bubble}
+In this chapter. we will provide valueable information about the methods used in our problem. 
+We used sage python to solve this problem. We orgnize data and process in four classes. 
+Each class is designed to store the information about Stock, Floren Zmirou
+,Cubic Spline,and Run.
+\section{Stock} 
+Let's consider following questions: 
+\begin{itemize}
+  \item What kind of Data will be used?
+  \item How can someone obtain accurate historic data information?
+  \item Will it be Mintue to mintue data information?
+  \item How we will store and use data information?
+  \item Can we get data information for any stock symbol in market?
+\end{itemize} 
+Following Stock Class which will provide answers to all the above questions.
+\subsection{Stock Class}
+We used Google Finance and CSV file from Yahoo Finance methods to download stock data information.
+There are GetGoogleData, GetStockPrice and init are the four algorithms used in Stock Class which will decribe the process.
+\begin{itemize}
+  \item S Stock Price.
+  \item Smax Maximum Stock Price. 
+  \item Smin Minimum Stock Price.
+  \item Row of Stock prices is numberical string.
+  \item Ticker is Ticker symbol name.
+  \item D Number of days.
+  \item T time in seconds in intergers.
+\end{itemize}
+We will read, download and save stock data by following methods.
+\subsubsection {Google Finance Stock Prices}
+\begin{enumerate}
+\item  Get Google Data: This function obtains mintue to mintue stock prices in numberical string for any ticker from Google Finance and save in array. 
+\begin{algorithm}
+\caption{Get Google Data}
+\bigskip
+\textbf{INPUT}: Ticker, D ,T\\
+\textbf{OUTPUT}: $S = (S_{t_1}\ldots S_{t_n})$ in [0,T] where $t_i = \frac{i}{n}T$.
+\begin{algorithmic}[1]
+  \If {Ticker length $\leq$ 3}
+  \State{exchange Ticker with New York Stock Exchange (NYSE)}.
+  \Else
+  \State {exchange Ticker with Natinal Association of Securities Dealers (NASD)}
+  \EndIf
+  \item Open Google Finance link.
+  \item DataList = reads each line from Google Finance link.
+  \item TickerData = list of array of DataList.
+  \item Put stock Prices in a list.
+  \For {MinuteData in TickerData}
+  \State {Seperate MintueData with commas and store in a list S.}
+  \State {Append S as float and save it.}\\
+  \Return {S = Stock prices}
+\end{algorithmic}
+\end{algorithm}
+\subsubsection{Yahoo Finance Stock Prices}
+\item  Get Yahoo Data : This function obtains the stock prices which are downloaded from yahoo finance and stored
+in csv file by filename. It will provide the yahoo API based minute to minute data.
+\begin{algorithm}
+\caption{Get Yahoo Data}
+\bigskip
+\textbf{INPUT}: Filename\\
+\textbf{OUTPUT}: S from CSV file.
+\begin{algorithmic}[1]
+  \item Open Yahoo Finace link.
+  \item Open and read the csv Filename as universal.
+  \item Skip the header.
+  \item Create a empty list.
+  \For {row in csv Filename}
+  \If {the second row is numberical string}
+  \State {Add second row to empty list}
+  \item Name this row S.\\
+  \Return{S}
+\end{algorithmic}
+\end{algorithm}
+\newpage
+\subsubsection{Choosing either Google Ticker Or Yahoo CSV file}
+\item  Class Constructor: This function will analyzie wheather to use csv filename for Yahoo or Ticker 
+for Google finance.
+\begin{algorithm}
+\caption{--init--}
+\bigskip
+\textbf{INPUT}: User Keyword  \\
+\textbf{OUTPUT}: S 
+\begin{algorithmic}[1]
+  \If {Filename is in keyward Usage}
+  \State {Obtain Stock Prices from Get Stock Prices.}
+  \Elif {Ticker is used in keyward Usage}
+  \State {Obtain Stock Prices from Get Google Data.}
+  \Else { Bad parameters}\\
+  \Return{S}
+\end{algorithmic}
+\end{algorithm}
+\subsection {Example}
+\newpage
+\section{Floren Zmirou}
+This class will implement the following equation:
+\begin{equation}\label{florenZmirouEquation}
+S_n(x) = \frac{\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}} n (S_{t_i+1}-S_{t_i})^2}{\Sigma_{i=1}^{n} 1_{\{|S_{t_i}-x|<h_n\}}}
+\end{equation}
+Now we have Stock Prices from Stock Class. Our goal is to get $\sigma(x)$ values from list of Stock Prices S.
+We will import sage and stock class to Floren Zmirou class. In order to use Floren Zmirou Estimator, we will need following:\\
+\begin{itemize}
+  \item n = Number of stock prices.
+  \item T = Time in seconds
+  \item hn = $1/(n)^(1/3)$
+  \item x-step\-size
+  \item x values
+\end{itemize}
+\begin{itemize}
+  \item We will implement hn, x-step\-size, and x values so we can use the terms in Floren zmirou estimator equation (1.1).
+\end{itemize}
+\subsection{Floren Zmirou Class}
+\begin{algorithm}
+\caption{Derive hn}
+\bigskip
+\textbf{INPUT}: Stock Prices S\\
+\textbf{OUTPUT}: hn
+\begin{algorithmic}[1]
+  \item n = length of Stock Prices S.
+  \item hn = 1.0/n**(1.0/3.0)\\
+  \Return {hn}
+\end{algorithmic}
+\end{algorithm}
+\item (x step size): This function will be used  to create step size to generate x.
+\begin{algorithm}
+\caption{x\_hn = x step size}
+\bigskip
+\textbf{INPUT}: Stock Prices S\\
+\textbf{OUTPUT}: x\_hn
+\begin{algorithmic}[1]
+  \item Double hn = 2 **hn
+  \item Difference = max S-min S
+  \item x\_hn = Difference * Double hn\\
+  \Return {x\_hn}
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\caption { x Values}
+\bigskip
+\textbf{INPUT}: Stock Prices S\\
+\textbf{OUTPUT}: x
+\begin{algorithmic}[1]
+  \item half h\_n = x\_hn /2.0
+  \item x = empty list.
+  \item Append x with Smin + half h\_n
+  \item FirstElement = first element of x's list.
+  \While {FirstElement < Smax}
+  \State{FirstElement = FirstElement + x\_hn}
+  \EndWhile
+  \item Append FirstElement into x's list.\\
+  \Return {x}
+\end{algorithmic}
+\end{algorithm}
+\newpage
+\begin{itemize}
+  \item Now we will implement floren Zmirou Estimator. Floren Zmirou has Sublocal time, Local time, volatility Estimator and Indicator function.
+\end{itemize}
+\item Sublocal Time:This function will give $L_{T}^n(x) = (\frac{T}{2nhn}) \sum_{i =1}^ n 1_{\left\vert S_{t_i} - x \right\vert < h_n}$
+\begin{algorithm}
+\caption{Sublocal Time}
+\bigskip
+\textbf{INPUT}: T, S, x, n, hn.\\
+\textbf{OUTPUT}: $L_{T}^n(x) = (\frac{T}{2nhn}) \sum_{i =1}^ n 1_{\left\vert S_{t_i} - x\right\vert }$
+\begin{algorithmic}[1]
+  \item sum = 0.0
+  \item scalar = T/(2.0*n*hn)
+  \For {i in range of the length of Stock Prices}
+  \State{Sti = i th element of the list of Stock prices}
+  \State{absoluteValue = abs(Sti-x)}
+  \State{indicatorValue to pass through indicator function}
+  \If{absoluteValue is less than hn}
+  \State {sum = sum+indicatorValue}\\
+  \Return{scalar*sum}
+\end{algorithmic}
+\end{algorithm}
+\item Local Time: $L_{T}^n(x) = (\frac{T}{2nh_n}) \sum_{i =1}^ n 1_{\left\vert S_{t_i} - x\right\vert  < hn}*n(S(t(i+1))-S(t(i))^2$
+\begin{algorithm}
+\caption{Local Time}
+\bigskip
+\textbf{INPUT}: T, S, x, n, hn.\\
+\textbf{OUTPUT}:
+\begin{algorithmic}[1]
+  \item sum = 0.0
+  \item scalar = T/(2.0*n*hn)
+  \For{ i in range of the length of Stock prices - 1}
+  \State{Sti = ith element of the list of Stock prices}
+  \State{Stj = jth element of the list of Stock prices}
+  \State{absoluteValue = abs(Sti-x)}
+  \State{Difference = (Stj-Sti)**2}
+  \If{ absoluteValue is less than hn}
+  \State{sum = sum+indicatorValue*n*Difference}\\
+  \Return{scalar*sum}
+\end{algorithmic}
+\end{algorithm}
+\item Volatility Estimator Sn(x): Volatility Estimator is $\sigma^2(x)$. This function will give Local Time$/$Sublocal Time.
+\begin{algorithm}
+\caption{Volatility Estimator}
+\bigskip
+\textbf{INPUT}: T, S, x, n, hn.\\
+\textbf{OUTPUT}:
+\begin{algorithmic}[1]
+  \item Ratio =  Local Time / Sublocal Time.\\
+  \Return {Ratio}
+\end{algorithmic}
+\end{algorithm}
+\newpage
+\begin{itemize}
+  \item We have $\sigma^2(x)$ for Stock Prices. Now we want to see how many stock prices are in each grid point.
+If there are less than 0 or 1 percent of stock prices in each grid then we will exclude that grid point from
+our calculation process.
+\end{itemize}
+\item (DoGridAnalysis): This function give us the list of usable grid points and for each usable grid point, the list of Stock prices.
+\begin{algorithm}
+\caption{DoGridAnalysis}
+\bigskip
+\textbf{INPUT}: T,S,x,n,hn.\\
+\textbf{OUTPUT}:
+\begin{algorithmic}[1]
+  \item x = useableGridPoints.
+  \item d = empty dictionary
+  \item Si =  length of stock prices.
+  \For{grid Points in x}
+  \State{create a dictionary where the keys are the grid points and the value is a list for each grid point}
+  \For{stockPrice in S}
+  \If{|grid Points - stockPriceCount|$\leq$ hn}
+  \State{Add x value to corresponding Si}
+  \For{grid Points in x}
+  \If{if the list of data points corresponding to x values than Y percent of total grid points}
+  \State{add it to the list of usable grid points}
+  \State L = dictionary with key values of grid points.
+  \State N = Length of L in float.
+  \State {Percent of Stock Prices = N/S}
+  \If {Percent of Stock prices < Y}
+  \State{Remove grid points from x}
+  \State{Delete L}\\
+  \Return{x = usable grid points and d }
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\caption{Get Grid Variance}
+\bigskip
+\textbf{INPUT}: S,x\_hn, x values\\
+\textbf{OUTPUT}: Floren Zmirou estimation over usable grid points.
+\begin{algorithmic}[1]
+  \item Points = Empty list.
+  \item half x\_hn = x step size*(Stock Prices)/2.0
+  \For{x in usable grid points}
+  \State{y =Sn(x)**2}
+  \State{Append (x,y)}\\
+  \Return{(x,y)}
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\caption{GetGridInverseStandardDeviation}
+\bigskip
+\textbf{INPUT}:S,x\_hn,x values.\\
+\textbf{OUTPUT}: Standard Deviation of usable grid points.
+\begin{algorithmic}[1]
+  \item Points = Empty list
+  \For{x in usable grid points}
+  \State{y = 1/sqrt(Sn(x))**2}
+  \State{Append (x,y) in Points's list}\\
+  \Return{(x,y)}
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\caption{GetGridSigma}
+\bigskip
+\textbf{INPUT}:S,x\_hn,x values.\\
+\textbf{OUTPUT}: Standard Deviation of usable grid points.
+\begin{algorithmic}[1]
+  \item Points = Empty list
+  \For{x in usable grid points}
+  \State{y = Sn(x)}
+  \State{Append (x,y) in Points's list}\\
+  \Return{(x,y)}
+\end{algorithmic}
+\end{algorithm}
+\section{ Natural Cubic Spline}- To construct the cubic spline interpolant $S$ for the function $f$, defined
+at the numbers $x_0<x_1<\ldots<x_n$ satisfying $S''(x_0) = S''(x_n) = 0:$\\
+(Natural Cubic Spline)
+  \begin{algorithm}
+  \caption{Natural Cubic Spline}
+  \bigskip
+  \textbf{INPUT}: $n, x_0,x_1,\ldots,x_n; a_0 = f(x_0), a_1 = f(x1),\ldots, a_n = f(x_n)$\\
+  \textbf{OUTPUT}: $a_j, b_j,c_j,d_j$ for $j = 0,1,\ldots,n-1$.\\
+  (note: $S_(x) = S_j(x) = a_j+b_j(x-x_j)+c_j(x-x_j)^2+d_j(x-x_j)^3$ for $x_j\leq x \leq x_{j+1}$)
+  \begin{algorithmic}[1]
+  \For{$i = 0,1,$\ldots$,n-1$}
+  \State{$h_i = x_{i+1}-x_i$}
+  \EndFor
+  \For{$i = 1,2,\ldots,n-1$}:
+  \State{$\alpha_i = \frac{3}{h_i}(a_{i+1}-a_i)-\frac{3}{h_{i-1}}(a_i-a_{i-1})$}
+  \EndFor
+  \item Set $l_0 = 1;$
+  \item $\mu = 0;$
+  \item $z_0 = 0.$
+  \For{$i = 1,2,\ldots,n-1$}
+  \State{$l_1 = 2(x_{i+1}-x_{i-1})-h_{i-1}\mu_{i-1}$};
+  \item $\mu_1 = \frac{h_1}{l_1};$
+  \item $z_1 = \frac{(\alpha_1 - h_{i-1}z_{i-1})}{l_1}.$
+  \item Set $l_n = 1;$
+  \item $z_n = 0;$
+  \item $c_n = 0.$
+  \For{$j = n-1,n-2,\ldots,0$}
+  \State{$ c_j = z_j-\mu_jc_{j+1};$}
+  \State{$b_j = (a_{j+1}-a_j)/h_j -h_j(c_{j+1}+2c_j)/3;$}
+  \State{$d_j = (c_{j+1}-c_j)/(3h_j)$}
+  \item Return $(a_j,b_j,c_j,d_j for j = 0,1,\ldots,n-1)$;
+  \end{algorithmic}
+\end{algorithm}
+\end{enumerate}
+\section{Run the Program}

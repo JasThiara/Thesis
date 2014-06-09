@@ -1,8 +1,41 @@
-'''
-Created on Jan 19, 2014
+r"""
+Implements the Natural Cubic Spline from Numerical Analysis 8th ed. Burden & Faires
 
-@author: Jas
-'''
+The natural cubic spline is a piecewise cubic polynomial spline interpolation.
+Given a function f defined on [a,b] and a set of nodes a=x0 < x1 < ... < xn=b
+a natural cubic spline interpolant S for f is a function that satisfies the
+the following conditions:
+(a) S(x) is a cubic polynomial, denoted S_j(x), on the subinterval 
+	[x_j, x_{j+1}] for each j=0,1,...,n-1
+(b) S_j(x_j) = f(x_j) and S_j(x_{j+1}) = f(x_{j+1}) for each j=0,1,...,n-1
+(c) S_{j+1}(x_{j+1}) = S_j(x_{j+1}) for each j = 0,1,...,n-2
+(d) S_{j+1}'(x_{j+1}) = S_j'(x_{j+1}) for each j = 0,1,...,n-2
+(e) S_{j+1}''(x_{j+1}) = S_j''(x_{j+1}) for each j = 0,1,...,n-2
+(f) S''(x_0) = S''(x_n) = 0
+
+
+AUTHORS:
+
+- Clinton Maurice Bowen (2014-06-08): initial version
+
+EXAMPLES::
+
+
+"""
+
+#*****************************************************************************
+#       Copyright (C) 2014 Clinton Maurice Bowen 
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#                  http://www.gnu.org/licenses/
+#*****************************************************************************
+
+
+
+
 from sage.all import *
 from sage.functions.piecewise import  PiecewisePolynomial
 class NaturalCubicSpline(PiecewisePolynomial):

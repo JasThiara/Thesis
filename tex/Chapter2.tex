@@ -1,48 +1,73 @@
 \chapter{Background on Asset Bubble Detection Using the Floren-Zmirou Estimator}
 \section{Background of Portfolio Theory}
-
-\begin{enumerate}
-  \item Objective portfolio theory to minimize risk given.
-  \item An expected return on assets\cite{MPS}.
-  \item Key definations.
-  \begin{itemize}
-    \item Portfolio has set of asset in manners which minimize the risks.
-    \item Primary way to manage portfolio with the aim of distributing risk.
-    \item Market Price- current price
-    \item Fundamental Price- Intrisic price.
-    \item The bubble is the difference between market and fundamental price. 
-    \item The fluctuation of asset price is volatillity od asset.
-  \end{itemize}
-  \item Our thesis problem consists detecting type 3 bubble within market price\cite{LHM}
-\end{enumerate}
 \section{Mathematical Background of Portfolio Theory}
-\begin{enumerate}
-  \item Random Variable \cite{AIAA}
-  \item \cite{BIIE}
-  \begin{itemize}
-    \item moment Generator function of random variable.
-    \item Expected value of an random variable.
-    \item Variance of a random variable
-  \end{itemize}
-  \item Sigma Albegra\cite{CMT}
-  \item \cite{GHHM}
-  \begin{itemize}
-    \item Probability space
-    \item Stochastic Process
-    \item Weiner process
-    \item Martingale
-  \end{itemize}
-  \item fundamential pricesa stochastic process\cite{HAAE,OSSE}
-  \item Market Price as a stochastic process\cite{HAAE,OSSE}
-  \item Asset Bubble\cite{FAPVBPS}
-  \item Volatility\cite{FAPVBPS}
-  \item SDE\cite{GIIE}
-  \item Euler Marayama\cite{HAAE}
-  \item Floren Zmirou\cite{FZOFTD}
-  \item Theorem strict local martingale iff \cite{PSSF}
-  \item Test: using FZ tp estimate sigma and then testing integral.
-\end{enumerate}
+%%% EQUATION EXAMPLE BELOW
+\begin{equation}\label{eq:florenZmirouEquation}
+S_n(x) = \frac{\sum_{i=1}^{n} 1_{\left\lbract\left\vert S_{t_i}-x\right\vert<h_n\right\rbrace} n \left(S_{t_{i+1}}-S_{t_i}\right)^2}{\sum_{i=1}^{n} 1_{\left\lbrace \left\vert S_{t_i}-x\right\vert <h_n\right\rbrace}}
+\end{equation}
+ 
+%%% THEOREM EXAMPLE BELOW
+\begin{thm}\label{thm:RelatingMartingalesAndBubbles}
+ %$$\left\lbrace S_t : 0 \leq t \leq T\right\rbrace $$
+A stochastic process $S$ is a strict local martingale if and only if
+\begin{equation}\label{eqn:RelatingMartingalesAndBubbles}
+\int_\alpha^\infty \frac{x}{\sigma^2(x)}dx < \infty
+\end{equation}
+for all $\alpha > 0$.
+\end{thm}
 
+%%% DEFINITION EXAMPLES BELOW
+The \textit{market price} is the current price of an asset.
+\begin{defn}[Probability Space]\label{def:ProbabilitySpace}
+$\left(\Omega, \mathcal{F}, P \right)$ where $\Omega$ is a set, $\mathcal{F}$ is a sigma algebra of $\Omega$, and $P$ is a probability measure
+\end{defn}
+CHAPTER 2 OUTLINE\\
+\begin{enumerate}
+  \item Background of Portfolio Theory
+  \begin{itemize}
+    	\item[(A)] Objective of portfolio theory: to minimize risk given an expected return on assets\cite{MPS}.
+	    \begin{itemize}
+	    	\item[(i)]Explain in words to the reader the key definitions:
+	    	\begin{itemize}
+	    		\item[(a)] Portfolio has set of asset in manners which minimize the risks.
+			    \item[(b)] Primary way to manage portfolio with the aim of distributing risk.
+			    \item[(c)] Market Price- current price
+			    \item[(d)] Fundamental Price- Intrisic price.
+			    \item[(e)] The bubble is the difference between market and fundamental price. 
+			    \item[(f)] The fluctuation of asset price is volatillity od asset.
+	    	\end{itemize}
+	    	\item[(ii)] Our thesis' problem consists detecting type 3 bubble within market price\cite{LHM}
+	    \end{itemize}
+  \end{itemize}
+  \item Mathematical Background of Portfolio Theory
+  \begin{itemize}
+  		\item[(A)] Random Variable \cite{AIAA}
+  		\begin{itemize}
+  		  	\item[(i)] moment Generator function of random variable.\cite{BIIE}
+		    \item[(ii)] Expected value of an random variable\cite{BIIE}.
+		    \item[(iii)] Variance of a random variable\cite{BIIE}
+  		\end{itemize}
+  		\item[(B)] Sigma Albegra\cite{CMT}
+  		\begin{itemize}
+  		  	\item[(i)] Probability space\cite{GHHM}
+		    \item[(ii)] Stochastic Process\cite{GHHM}
+		    \item[(iii)] Weiner process\cite{GHHM}
+		    \item[(iv)] Martingale\cite{GHHM}
+  		\end{itemize}
+  		\item[(C)] Stochastic Process
+  		\begin{itemize}
+  		  	\item[(i)] Fundamential pricesa stochastic process\cite{HAAE,OSSE}
+		    \item[(ii)] Market Price as a stochastic process\cite{HAAE,OSSE}
+  		\end{itemize}
+  		\item[(D)] Asset Bubble\cite{FAPVBPS}
+		\item[(E)] Volatility\cite{FAPVBPS}
+        \item[(F)] SDE\cite{GIIE}
+		\item[(G)] Euler Marayama\cite{HAAE}
+		\item[(H)] Floren Zmirou\cite{FZOETD}
+		\item[(I)] Theorem strict local martingale iff \cite{PSSE}
+		\item[(J)] Test: using FZ tp estimate sigma and then testing integral.
+  \end{itemize}
+\end{enumerate}
 % %{Chapter 2}
 % \chapter{Theoretical Background}
 % %Where does your problem come from? (you’ll have to talk about stochastic PDEs, volatility, assets price modeling, martingales, etc.) 

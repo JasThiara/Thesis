@@ -1,29 +1,40 @@
 \chapter{Implementation of Asset Bubble Detection Using the Floren-Zmirou Estimator}
-\section{Stradgery}
-\begin{enumerate}
-  \item minute to minute stock price data\cite{google}.
-  \item Nasdaq Stock.
-  \item calculate grid points/ usable grid points-breen notes
-  \item Floren Zmirou estimation- ref to chapter 2
-  \item Bubble test on FZ estimation- explain
-  \begin{itemize}
-    \item MVT on floren zmirou derivative
-  \end{itemize}
-  \item Bubble test spline of Floren zmirou derivative
-  \begin{itemize}\cite{RPPA}
-    \item intro natural cubic spline
-    \item spline on Floren Zmirou
-    \item bubble
-  \end{itemize}
-\end{enumerate}
-\section{Implementation}
-\begin{enumerate}
-  \item verbal explanantion sage python- floren zmirou, spline, bubble testing.
-  \item verbal explanantion google- minute to minute
-\section{Algorithm and psuedocode}
+%HOW TO CITE AN EQUATION: E.G. 
+In equation \eqref{eqn:florenZmirouEquation}\ldots\\
+%HOW TO CITE A THEOREM: E.G. 
+in theorem \ref{thm:RelatingMartingalesAndBubbles}\\
+%HOW TO CITE A DEFINITION WITHIN A REMARK: E.G. 
+\begin{rmk}
+See the definition \ref{def:ProbabilitySpace}
+\end{rmk}
 
-\end{enumerate}
 
+
+\section{Strategy}
+\section{Imlementation}
+\section{Algorithms in Pseudocode}
+CHAPTER 3 OUTLINE\\
+\begin{enumerate}
+	\item Strategy
+		\begin{itemize}
+	  		\item[(A)] We use Minute to minute stock price data
+	  		\item[(B)] Bubble testing on FZ estimation- explain
+	  		\begin{itemize}
+	    		\item[(i)] MVT on floren zmirou derivative\cite{RPPA,FZOETD}
+	    		\item[(ii)] Intro natural cubic spline \cite{BMA}
+	    		\begin{itemize}
+	    		    \item[(a)] Spline on Floren Zmirou
+	    			\item[(b)] MVT on spline interpolation of FZ \cite{RPPA,BMA}
+	    		\end{itemize}
+	  		\end{itemize}
+  		\end{itemize}
+	\item Implementation
+	\item Algorithms in Pseudocode
+	\begin{itemize}
+		  \item[(A)] verbal explanantion sage python- floren zmirou, spline, bubble testing.
+		  \item[(B)] verbal explanantion google- minute to minute
+	\end{itemize}
+\end{enumerate}
 % In this chapter. we will provide valueable information about the methods used in our problem. 
 % We used sage python to solve this problem. We orgnize data and process in four classes. 
 % Each class is designed to store the information about Stock, Floren Zmirou

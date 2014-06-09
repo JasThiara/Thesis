@@ -3,16 +3,15 @@
 \doublespacing
 \usepackage[latin1]{inputenc}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[table]{xcolor}
 \usepackage[T1]{fontenc}
-%\usepackage{algpseudocode}
 \usepackage{verbatim}
 \usepackage{multirow}
 \usepackage{algorithm}		% http://ctan.org/pkg/algorithm
 \usepackage{algpseudocode}	% http://ctan.org/pkg/algorithmicx
-							% http://ctan.org/pkg/algorithmicx
 \usepackage{caption}
 \usepackage{alltt}
 \usepackage[pdftex]{graphicx}
@@ -45,4 +44,19 @@ Once we will have volatility from floren zmirou. We will obtain volatility funti
 % \setlength{\oddsidemargin}{0.5in}
 % \setlength{\evensidemargin}{0.0in}
 % \setlength{\textwidth}{6.0in}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{conj}{Conjecture}
+\newtheorem{exmp}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
 \begin{document}

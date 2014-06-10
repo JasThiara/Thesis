@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: document.aux
+The style file: plain.bst
+Database file #1: Biblio.bib
+Warning--empty journal in AIAA
+Warning--empty year in BMA
+You've used 27 entries,
+            2118 wiz_defined-function locations,
+            663 strings with 6792 characters,
+and the built_in function-call counts, 7151 in all, are:
+= -- 687
+> -- 269
+< -- 7
++ -- 112
+- -- 82
+* -- 399
+:= -- 1223
+add.period$ -- 81
+call.type$ -- 27
+change.case$ -- 105
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 320
+empty$ -- 629
+format.name$ -- 82
+if$ -- 1499
+int.to.chr$ -- 0
+int.to.str$ -- 27
+missing$ -- 38
+newline$ -- 137
+num.names$ -- 54
+pop$ -- 168
+preamble$ -- 1
+purify$ -- 93
+quote$ -- 0
+skip$ -- 207
+stack$ -- 0
+substring$ -- 353
+swap$ -- 48
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 82
+warning$ -- 2
+while$ -- 72
+width$ -- 29
+write$ -- 282
+(There were 2 warnings)

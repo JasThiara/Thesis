@@ -1,0 +1,143 @@
+\begin{thebibliography}{10}
+
+\bibitem{AIAA}
+Theodore~Wilbur Anderson.
+\newblock An introduction to multivariate stsisical analysis.
+\newblock 1954.
+
+\bibitem{BIM}
+VK~Bhalla.
+\newblock {\em Investment Management}.
+\newblock S. Chand, 2008.
+
+\bibitem{BIIE}
+Herman~J Bierens.
+\newblock {\em Introduction to the mathematical and statistical foundations of
+  econometrics}.
+\newblock Cambridge University Press, 2004.
+
+\bibitem{BMA}
+Richard~L Burden and J~Douglas Faires.
+\newblock Numerical analysis. 2001.
+\newblock {\em Brooks/Cole, USA}.
+
+\bibitem{CMT}
+Donald~L Cohn.
+\newblock {\em Measure theory}, volume 1993.
+\newblock Springer, 1980.
+
+\bibitem{FSPT}
+E~Robert Fernholz.
+\newblock {\em Stochastic portfolio theory}.
+\newblock Springer, 2002.
+
+\bibitem{FAPVBPS}
+Robert~P Flood and Robert~J Hodrick.
+\newblock Asset price volatility, bubbles, and process switching.
+\newblock {\em The Journal of Finance}, 41(4):831--842, 1986.
+
+\bibitem{FZOETD}
+Danielle Florens-Zmirou.
+\newblock On estimating the diffusion coefficient from discrete observations.
+\newblock {\em Journal of applied probability}, pages 790--804, 1993.
+
+\bibitem{GIIE}
+Thomas~C Gard.
+\newblock {\em Introduction to stochastic differential equations}.
+\newblock M. Dekker New York, 1988.
+
+\bibitem{GHHM}
+Crispin~W Gardiner et~al.
+\newblock {\em Handbook of stochastic methods}, volume~3.
+\newblock Springer Berlin, 1985.
+
+\bibitem{google}
+Google, June 2014.
+
+\bibitem{GSA}
+Benjamin Graham, David Le~Fevre Dodd, and Sidney Cottle.
+\newblock {\em Security analysis}.
+\newblock McGraw-Hill New York, 1934.
+
+\bibitem{GBAPB}
+Luciano Gutierrez.
+\newblock Bootstrapping asset price bubbles.
+\newblock {\em Economic Modelling}, 28(6):2488--2493, 2011.
+
+\bibitem{HAAE}
+Desmond~J Higham.
+\newblock An algorithmic introduction to numerical simulation of stochastic
+  differential equations.
+\newblock {\em SIAM review}, 43(3):525--546, 2001.
+
+\bibitem{littleBubble}
+Robert Jarrow, Younes Kchia, and Philip Protter.
+\newblock Is there a bubble in linkedin's stock price?
+\newblock {\em arXiv preprint arXiv:1105.5717}, 2011.
+
+\bibitem{JAPBICM}
+Robert~A Jarrow, Philip Protter, and Kazuhiro Shimbo.
+\newblock Asset price bubbles in complete markets.
+\newblock In {\em Advances in mathematical finance}, pages 97--121. Springer,
+  2007.
+
+\bibitem{JAPBIIM}
+Robert~A Jarrow, Philip Protter, and Kazuhiro Shimbo.
+\newblock Asset price bubbles in incomplete markets*.
+\newblock {\em Mathematical Finance}, 20(2):145--185, 2010.
+
+\bibitem{KSFM}
+Douglas Kennedy.
+\newblock {\em Stochastic financial models}.
+\newblock CRC Press, 2010.
+
+\bibitem{LHM}
+Cheng-Few Lee and John Lee.
+\newblock {\em Handbook of quantitative finance and risk management}.
+\newblock Springer, 2010.
+
+\bibitem{MPS}
+Harry~M Markowitz.
+\newblock {\em Portfolio selection: efficient diversification of investments},
+  volume~16.
+\newblock Yale University Press, 1970.
+
+\bibitem{MTFBIHM}
+Vyacheslav Mikhed and Petr Zem{\v{c}}{\'\i}k.
+\newblock Testing for bubbles in housing markets: A panel data approach.
+\newblock {\em The Journal of Real Estate Finance and Economics},
+  38(4):366--386, 2009.
+
+\bibitem{OSSE}
+Bernt {\O}ksendal.
+\newblock {\em Stochastic differential equations}.
+\newblock Springer, 2003.
+
+\bibitem{PSSE}
+Philip~E Protter.
+\newblock {\em Stochastic Integration and Differential Equations: Version 2.1},
+  volume~21.
+\newblock Springer, 2004.
+
+\bibitem{bigBubble}
+Philip~Protter Robert A.~Jarrow, Younes~Kchia.
+\newblock How to detect an asset bubble.
+\newblock {\em Journal of Computing}, 2011.
+
+\bibitem{RPPA}
+Walter Rudin.
+\newblock {\em Principles of mathematical analysis}, volume~3.
+\newblock McGraw-Hill New York, 1976.
+
+\bibitem{sage}
+W.\thinspace{}A. Stein et~al.
+\newblock {\em {S}age {M}athematics {S}oftware ({V}ersion x.y.z)}.
+\newblock The Sage Development Team, 2014.
+\newblock {\tt http://www.sagemath.org}.
+
+\bibitem{YAFEAISMB}
+Guojin Chen~Cheng Yan.
+\newblock A financial engineering approach to identify stock market bubble.
+\newblock {\em Systems Engineering Procedia}, 2:153--162, 2011.
+
+\end{thebibliography}

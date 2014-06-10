@@ -1,0 +1,17 @@
+\contentsline {chapter}{Signature page}{ii}
+\contentsline {chapter}{Dedication}{iii}
+\contentsline {chapter}{Acknowledgements}{iv}
+\contentsline {chapter}{Abstract}{vi}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Previous Work on Asset Bubble Detection}{1}
+\contentsline {chapter}{\numberline {2}Background on Asset Bubble Detection Using the Floren-Zmirou Estimator}{2}
+\contentsline {section}{\numberline {2.1}Background of Portfolio Theory}{2}
+\contentsline {section}{\numberline {2.2}Mathematical Background of Portfolio Theory}{2}
+\contentsline {chapter}{\numberline {3}Implementation of Asset Bubble Detection Using the Floren-Zmirou Estimator}{4}
+\contentsline {section}{\numberline {3.1}Strategy}{4}
+\contentsline {section}{\numberline {3.2}Imlementation}{4}
+\contentsline {section}{\numberline {3.3}Algorithms in Pseudocode}{4}
+\contentsline {chapter}{\numberline {4}Examples of Asset Bubble Detection}{5}
+\contentsline {chapter}{\numberline {5}Future Work on Asset Bubble Detection and Conclusion}{6}
+\contentsline {section}{\numberline {5.1}Future Work}{6}
+\contentsline {section}{\numberline {5.2}Conclusion}{6}
